@@ -38,6 +38,13 @@ Primarily this aims to be a mini-cookbook.  Just basic steps - enough to work si
 1. Merge your changes into the master with `git merge featurename`.
 1. Check the results of the merge (if you have tests, runthem) then delete the branch using `git branch -d featurename`
 
+#### Stash
+
+1. You need to stash some uncommitted changes to work on something else or to try a different approach to the problem
+1. Stash the changes with `git stash`
+1. When you're ready, get your changes back with `git stash apply`
+1. Alternatively, use `git stash list` to view all your stashed changes and apply a specific one with `git stash apply stash@{1}`
+
 #### Share
 
 1. You've not finished until you push the change to github using `git push`.
