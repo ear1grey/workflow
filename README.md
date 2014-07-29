@@ -47,19 +47,19 @@ Primarily this aims to be a mini-cookbook.  Just basic steps - enough to work si
 
 ### Tidying up your Git Log with Rebase
 
-Large amounts of commits from multiple authors can quickly mess with the Git Log rendering it difficult to follow. It can be cleaned up by using rebase. Note that this workflow should be done prior to pushing to a remote repository. Do not rebase on a remote branch as you will be in for a world of pain from other repo contributors! Also rebase is an extremely powerful tool as it rewrites Git History. Caution is advised as work can easily be lost.
+Many commits by multiple authors can make the `git log` difficult to follow.  Using `git rebase` before pushing to a remote repo can help solve this problem.  NB: Use `git rebase` **only** on a local branch that you have created - using it on a remote branch affects other users (not usually a good thing).  
+Caution: rebase is an extremely powerful tool - it rewrites Git History, your work can easily be lost.
 
-1. Working from your local branch you make several commits all with incremental changes
-1. Using `git rebase -i HEAD~x` where X is the number of commits you would like to combine you enter rebase interactive mode. A list of commits is presented preceeded by the following keyword 'pick' change the first instance to 'reword' as this will allow you to change the commit message to something more suitable. Alternatively if you are happy with the message leave it set to `pick`.
+1. Working on a local branch, commit incremental changes as necessary, leaving detailed comments for each commit.
+1. Invoke rebase interactive mode with `git rebase -i HEAD~x` (where *x* is the number of commits you would like to combine).
+1. A list of commits is presented preceeded by the keyword 'pick' change the first instance to 'reword' as this will allow you to change the commit message to something more suitable. Alternatively if you are happy with the message leave it set to `pick`.
 1. Change the remaining instances of `pick` to `squash` and close the editor
-1. Another editor will open allowing you to change the reword commit message to something more suitable. reword and close the editor.
+1. An editor will open allowing you to change the reword commit message to something suitable.  Reword and close the editor.
 1. A final editor will show the expected results of the rebase - Just close this.
 1. If all is successful the refs/head will be updated - Continue to merge and push.
 1. If you made a mistake you can abort the rebase by using `git rebase --abort`
 
-Optionally use `git log` to verify the rebase. After the rebase several chosen commit messages will be shown under a single commit hash. Additionally there is just `git rebase branchname` with which git will attempt to do an automatic rebase. Interactive Mode offers control and the ability to abort if need be.
-
-Other keywords that can be used will be shown in the editor.
+Optionally use `git log` to verify the rebase. After the rebase, several chosen commit messages will be shown under a single commit hash. Additionally use `git rebase branchname` with which git will attempt to do an automatic rebase. Interactive Mode offers control and the ability to abort if need be.
 
 #### Share
 
