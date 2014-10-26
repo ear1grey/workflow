@@ -30,13 +30,24 @@ Primarily this aims to be a mini-cookbook.  Just basic steps - enough to work si
     git commit -m 'fixes user/repo#42
 ([explanation](https://help.github.com/articles/closing-issues-via-commit-messages))
  
-#### Merge
+#### Merge Method
 
 1. If you have changes that are not comitted or stashed, commit them or stash them.
 1. Switch to the master branch with `git checkout master`.
 1. Update the master repository with `git pull`.
 1. Merge your changes into the master with `git merge featurename`.
 1. Check the results of the merge (if you have tests, runthem) then delete the branch using `git branch -d featurename`
+
+#### Rebase Method
+
+1. Your local development branch is out of sync with the remote master and you would like to bring it back in sync and keep a clean history free of merge commits
+1. On your local branch do `git pull --rebase origin master` to sync with the remote
+1. Resolve any conflicts caused by the rebase
+1. Add your resolutions with `git add`
+1. Run `git rebase --continue` and repeat as required.
+1. Checkout master with `git checkout master` and merge your local development branch with `git merge`.
+
+This method results in master fast fowarding and no commits relating to merges / conflicts keeping the git history clean and linearized  
 
 #### Stash
 
@@ -45,7 +56,21 @@ Primarily this aims to be a mini-cookbook.  Just basic steps - enough to work si
 1. When you're ready, get your changes back with `git stash apply`. You could also use `git stash pop` to apply the changes and clear the top most stash item in one command.
 1. Alternatively, use `git stash list` to view all your stashed changes and apply a specific one with `git stash apply stash@{1}`
 
-### Tidying up your Git Log with Rebase
+#### Returning to an earlier commit
+
+1. You have made some mistakes in your code base and would like to return to an earlier commit which worked
+1. Using `git log` to show your commit list find the commit you wish to return to
+1. Copy the commit SHA string
+1. Use `git reset SHA` where SHA is the previously copied string
+1. Optionally if there are unstaged changes and old files shown by `git status` do `git reset --hard` to return the staging area to the commit state
+
+#### Logging and tracing your steps
+
+1. View a full list of commits using `git log`
+1. Have a visual representation of branches and commits side by side using `git log --graph`
+1. Backtrack and retrace your steps in a Git Repo easily with `git reflog`
+
+#### Tidying up your Git Log with Rebase
 
 Many commits by multiple authors can make the `git log` difficult to follow.  Using `git rebase` before pushing to a remote repo can help solve this problem.  NB: Use `git rebase` **only** on a local branch that you have created - using it on a remote branch affects other users (not usually a good thing).  
 Caution: rebase is an extremely powerful tool - it rewrites Git History, your work can easily be lost.
