@@ -8,28 +8,32 @@ Primarily this aims to be a mini-cookbook.  Just basic steps - enough to work si
 
 1. Keep development and use of modules separate.  If you develop a tool, do not develop it where it is used.  You have two hats, module developer and module user.  You can only wear one hat at a time.
 
-### Clone 
+### Clone
 
 1. Get a local copy of the repo you're going to edit:
     git clone git@github.com:user/repo.git
 
 ### Developing 'featurename'
 1. Decide what featurename should do.
-2. Add an issue to `github.com/user/repo/issues` describing the intended content/functionality.  Use this as an opportunity to think about potential inputs and outputs. 
+2. Add an issue to `github.com/user/repo/issues` describing the intended content/functionality.  Use this as an opportunity to think about potential inputs and outputs.
 3. Then branch, hack, merge and share.
 
 
 #### Branching 'featurename'
- 
+
 1. From the list of available issues decide what feature you are going to change or add.
 1. Work on one issue at a time.
 1. Create a new branch for the issue with `git checkout -b featurename`.
 1. Hack until it works.
-1. Complete your change doing as many commits as necessary, e.g. `git commit -a -m 'rewrote description of x'`, or 
+1. Complete your change doing as many commits as necessary, e.g. `git commit -a -m 'rewrote description of x'`, or
     git add example.js
     git commit -m 'fixes user/repo#42
 ([explanation](https://help.github.com/articles/closing-issues-via-commit-messages))
- 
+
+#### Useful Commit Comments
+1. Always comment your commits.  Commit comments are very useful when looking back over what you've done.  Sometimes it's hard to work out *what* and *why* in order to write the comment (and that is your indication that if *you* can't work it out *now* someone (probably you) in the future will have a much harder time).
+2. When you've got everything ready to be committed by using `git add <filename>` on any files you want to add, a `git diff --cached` can remind you of precisely what the changes are that you're committing, so it'll be easier to write about them succinctly.
+
 #### Merge Method
 
 1. If you have changes that are not comitted or stashed, commit them or stash them.
